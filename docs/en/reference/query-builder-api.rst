@@ -608,9 +608,9 @@ method:
     <?php
 
     // Run a text search against the index
-    $qb = $dm->createQueryBuilder(Document::class)
-        ->language('it')
-        ->text('parole che stai cercando');
+    $qb = $dm->createQueryBuilder('Document')
+        ->text('parole che stai cercando')
+        ->language('it');
 
 Update Queries
 ~~~~~~~~~~~~~~
