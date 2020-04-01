@@ -1,0 +1,25 @@
+version: '3'
+services:
+  test.mongodb.dev:
+    container_name: test.mongodb.dev
+    tty: true
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        TRAVIS_PHP_VERSION: "7.2"
+        COMPOSER_VERSION: "1.8"
+        ADAPTER_VERSION: "^1.0.0"
+        DRIVER_VERSION: "stable"
+    volumes:
+      - .:/code
+    working_dir: /code
+    depends_on:
+      - mongodb
+  mongodb:
+    container_name: mongodb
+    image: mongo
+    ports:
+      - 27777:27017
+    logging:
+      driver: none
